@@ -2,20 +2,28 @@ import Head from 'next/head';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
+        <h1 className="leading-flat font-bold">
           Welcome to
           {' '}
           <a className="text-blue-600" href="https://nextjs.org">
             Next.js!
           </a>
         </h1>
+
+        <h1>test h1</h1>
+        <h2>test h2</h2>
+        <h3>test h3</h3>
+        <h4>test h4</h4>
+        <h5>test h5</h5>
+        <p>example default</p>
+        <p className="[ smart-text-size-300 ]">EXAMPLE example 300</p>
 
         <p className="mt-3 text-2xl">
           Get started by editing

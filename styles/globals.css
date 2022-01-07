@@ -1,3 +1,90 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --smart-size-300: clamp(0.83rem, 0.8rem + 0.18vw, 0.93rem);
+  --smart-size-400: clamp(0.88rem, 0.83rem + 0.24vw, 1rem);
+  --smart-size-common: clamp(1rem, 0.83rem + 0.85vw, 1.44rem);
+  --smart-size-500: clamp(1.09rem, 1rem + 0.47vw, 1.33rem);
+  --smart-size-600: clamp(1.37rem, 1.21rem + 0.8vw, 1.78rem);
+  --smart-size-700: clamp(1.71rem, 1.45rem + 1.29vw, 2.37rem);
+  --smart-size-800: clamp(2.14rem, 1.74rem + 1.99vw, 3.16rem);
+  --smart-size-900: clamp(2.67rem, 2.07rem + 3vw, 4.21rem);
+  --smart-size-1000: clamp(3.34rem, 2.45rem + 4.43vw, 5.61rem);
+  --smart-size-hero: clamp(2.07rem, 0.64rem + 12.14vw, 8.3rem)
+};
+
+a:-webkit-any-link:focus-visible {
+  outline-offset: 3.5px solid #9999FF;
+  /* box-shadow: 0 0 0 1px #9999FF, 0 0 0 5px rgb(251 250 247 / 30%); */
+  border-radius: 3px;
+}
+
+:focus-visible {
+  outline: 3.5px solid #9999FF;
+  /* box-shadow: 0 0 0 1px #9999FF, 0 0 0 5px rgb(251 250 247 / 30%); */
+  border-radius: 3px;
+}
+:focus {
+  outline: 3.5px solid #9999FF;
+  border-radius: 3px;
+}
+
+
+body {
+  line-height: 1.2;
+}
+
+.leading-flat {
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: var(--smart-size-900);
+}
+h2 {
+  font-size: var(--smart-size-800);
+}
+h3 {
+  font-size: var(--smart-size-700);
+}
+h4 {
+  font-size: var(--smart-size-600);
+}
+h5 {
+  font-size: var(--smart-size-500);
+}
+
+p {
+  font-size: var(--smart-size-common);
+}
+
+
+.smart-text-size-300 {
+  font-size: var(--smart-size-300);
+}
+.smart-text-size-400 {
+  font-size: var(--smart-size-400);
+}
+.smart-text-size-500 {
+  font-size: var(--smart-size-500);
+}
+.smart-text-size-600 {
+  font-size: var(--smart-size-600);
+}
+.smart-text-size-700 {
+  font-size: var(--smart-size-700);
+}
+.smart-text-size-800 {
+  font-size: var(--smart-size-800);
+}
+.smart-text-size-900 {
+  font-size: var(--smart-size-900);
+}
+.smart-text-size-1000 {
+  font-size: var(--smart-size-1000);
+}
+.smart-text-hero {
+  font-size: var(--smart-size-hero);
+}

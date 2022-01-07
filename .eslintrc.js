@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': 'off',
     'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
   },
   ignorePatterns: ['src/__tests__/*', 'src/stories/**/*.jsx', 'src/stories/**/*.js'],
