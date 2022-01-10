@@ -1,32 +1,42 @@
-import { useRouter } from 'next/router';
+import { createRef, useState } from 'react';
+
 import classNames from 'classnames';
+import ScrollSpy from './ScrollSpy';
 
 function Navbar() {
-  const router = useRouter();
-
-  // Use the customized Scrollspy component
+  // const router = useRouter();
+  const [isMenuActive, setIsMenuActive] = useState(false);
   const MENU_ITEMS = [
     {
       label: 'Home',
-      href: '/',
+      href: '#',
     },
     {
       label: 'About',
-      href: '/about',
+      href: '#about',
     },
     {
       label: 'Contact',
-      href: '/contact',
+      href: '#contact',
     },
     {
       label: 'Projects',
-      href: '/projects',
+      href: '#projects',
     },
   ];
+
+  const toggleMenu = () => {
+    setIsMenuActive(!isMenuActive);
+  };
   // If router.pathname is equal to the href set active classNames else use the default classNames
-  const isActiveLink = (href) => classNames({
-    'bg-gray-900 text-white block': router.pathname === href, // active
-    'text-gray-800 hover:bg-gray-700 hover:text-white block': router.pathname !== href, // default
+  // const isActiveLink = (href) => classNames({
+  //   'bg-gray-900 text-white block': router.pathname === href, // active
+  //   'text-gray-800 hover:bg-gray-700 hover:text-white block':
+  // router.pathname !== href, // default
+  // });
+
+  const isActive = classNames({
+    'hidden ': !isMenuActive,
   });
 
   return (
@@ -34,7 +44,7 @@ function Navbar() {
       <div className="[ max-w-7xl mx-auto px-2 py-4 sm:px-6 lg:px-8 ]">
         <div className="[ relative flex items-center justify-between h-16 ]">
           <div className="[ absolute inset-y-0 left-0 flex items-center sm:hidden ]">
-            <button type="button" className="[ inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ]" aria-controls="mobile-menu" aria-expanded="false">
+            <button type="button" onClick={() => toggleMenu()} className="[ inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white ]" aria-controls="mobile-menu" aria-expanded="false">
               <span className="[ sr-only ]">Open main menu</span>
               <svg className="[ block h-6 w-6 ]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -51,16 +61,20 @@ function Navbar() {
             </div>
             <div className="[ hidden sm:block sm:ml-6 ]">
               <div className="[ flex space-x-4 ]">
-                {MENU_ITEMS.map(({ label, href }) => (
-                  <a
-                    key={`${label} - (desktop)`}
-                    href={href || '#'}
-                    className={`[ ${isActiveLink(href)} px-3 py-2 rounded-md smart-text-size-300 font-medium ]`}
-                    aria-current={router.pathname === href ? 'page' : false}
-                  >
-                    {label}
-                  </a>
-                ))}
+                <ScrollSpy className="tw-active" offsetTop={96} autoScrollOffsetTop={-95}>
+                  {MENU_ITEMS.map(({ label, href }) => (
+                    <button
+                      type="button"
+                      key={`${label} - (desktop)`}
+                      href={href || '#'}
+                      ref={createRef()}
+                      className="[ px-3 py-2 rounded-md smart-text-size-300 font-medium ]"
+                      // aria-current={router.pathname === href ? 'page' : false}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </ScrollSpy>
               </div>
             </div>
           </div>
@@ -68,18 +82,21 @@ function Navbar() {
       </div>
 
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-      <div className="sm:hidden" id="mobile-menu">
+      <div className={`[ ${isActive}sm:hidden absolute w-full bg-gray-600 ]`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {MENU_ITEMS.map(({ label, href }) => (
-            <a
-              key={`${label} - (mobile)`}
-              href={href || '#'}
-              className={`[ ${isActiveLink(href)} px-3 py-2 rounded-md smart-text-size-300 font-medium ]`}
-              aria-current={router.pathname === href ? 'page' : false}
-            >
-              {label}
-            </a>
-          ))}
+          <ScrollSpy className="tw-active" offsetTop={96} autoScrollOffsetTop={-95}>
+            {MENU_ITEMS.map(({ label, href }) => (
+              <a
+                key={`${label} - (mobile)`}
+                href={href || '#'}
+                ref={createRef()}
+                className="[ px-3 py-2 rounded-md smart-text-size-300 font-medium ]"
+                // aria-current={router.pathname === href ? 'page' : false}
+              >
+                {label}
+              </a>
+            ))}
+          </ScrollSpy>
         </div>
       </div>
     </nav>

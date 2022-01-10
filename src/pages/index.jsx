@@ -8,7 +8,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+      <main className="flex flex-col items-center justify-center w-full flex-1 text-center">
         <h1 className="leading-flat font-bold">
           Welcome to
           {' '}
@@ -73,6 +73,15 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+        </div>
+        <div id="about" className="min-h-screen w-full bg-gray-700 text-gray-300">
+          About
+        </div>
+        <div id="contact" className="min-h-screen w-full bg-blue-800 text-gray-300">
+          Contact
+        </div>
+        <div id="projects" className="min-h-screen w-full bg-green-800 text-gray-300">
+          Projects
         </div>
       </main>
 
