@@ -1,4 +1,34 @@
+import { useRouter } from 'next/router';
+import classNames from 'classnames';
+
 function Navbar() {
+  const router = useRouter();
+
+  // Use the customized Scrollspy component
+  const MENU_ITEMS = [
+    {
+      label: 'Home',
+      href: '/',
+    },
+    {
+      label: 'About',
+      href: '/about',
+    },
+    {
+      label: 'Contact',
+      href: '/contact',
+    },
+    {
+      label: 'Projects',
+      href: '/projects',
+    },
+  ];
+  // If router.pathname is equal to the href set active classNames else use the default classNames
+  const isActiveLink = (href) => classNames({
+    'bg-gray-900 text-white block': router.pathname === href, // active
+    'text-gray-800 hover:bg-gray-700 hover:text-white block': router.pathname !== href, // default
+  });
+
   return (
     <nav className="[ sticky top-0 bg-gray-600 mb-8 ]">
       <div className="[ max-w-7xl mx-auto px-2 py-4 sm:px-6 lg:px-8 ]">
@@ -21,13 +51,16 @@ function Navbar() {
             </div>
             <div className="[ hidden sm:block sm:ml-6 ]">
               <div className="[ flex space-x-4 ]">
-                <a href="/" className="[ bg-gray-900 text-white px-3 py-2 rounded-md smart-text-size-300 font-medium ]" aria-current="page">Dashboard</a>
-
-                <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Team</a>
-
-                <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Projects</a>
-
-                <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Calendar</a>
+                {MENU_ITEMS.map(({ label, href }) => (
+                  <a
+                    key={`${label} - (desktop)`}
+                    href={href || '#'}
+                    className={`[ ${isActiveLink(href)} px-3 py-2 rounded-md smart-text-size-300 font-medium ]`}
+                    aria-current={router.pathname === href ? 'page' : false}
+                  >
+                    {label}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -37,17 +70,16 @@ function Navbar() {
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       <div className="sm:hidden" id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1">
-          {/* <!--
-          Current: "bg-gray-900 text-white",
-          Default: "text-gray-300
-          hover:bg-gray-700 hover:text-white" --> */}
-          <a href="/" className="[ bg-gray-900 text-white block px-3 py-2 rounded-md smart-text-size-300 font-medium ]" aria-current="page">Dashboard</a>
-
-          <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Team</a>
-
-          <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Projects</a>
-
-          <a href="/" className="[ text-gray-800 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md smart-text-size-300 font-medium ]">Calendar</a>
+          {MENU_ITEMS.map(({ label, href }) => (
+            <a
+              key={`${label} - (mobile)`}
+              href={href || '#'}
+              className={`[ ${isActiveLink(href)} px-3 py-2 rounded-md smart-text-size-300 font-medium ]`}
+              aria-current={router.pathname === href ? 'page' : false}
+            >
+              {label}
+            </a>
+          ))}
         </div>
       </div>
     </nav>
