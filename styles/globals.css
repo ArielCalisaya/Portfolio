@@ -6,6 +6,13 @@ html, body {
   scroll-behavior: smooth !important;
 }
 
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
 :root {
   --smart-size-300: clamp(0.83rem, 0.8rem + 0.18vw, 0.93rem);
   --smart-size-400: clamp(0.88rem, 0.83rem + 0.24vw, 1rem);
