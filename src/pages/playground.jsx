@@ -3,8 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { isBrowser } from '@/src/utils/browser';
 
-let camera; let scene; let renderer; let
-  hlight;
+let camera; let scene; let renderer; let hlight;
 // let geometry, material, mesh;
 
 if (isBrowser) {
