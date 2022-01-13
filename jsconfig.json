@@ -7,11 +7,12 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "baseUrl": ".",
+    "target": "ES6",
     "paths": {
       "@/*": ["./*"],
       // "@*": ["./src/common/components/@*"]
     },
   },
   "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
