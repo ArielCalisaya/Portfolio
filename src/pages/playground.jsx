@@ -5,11 +5,11 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { isBrowser } from '@/src/utils/browser';
 
 function Playground() {
-  useLayoutEffect(() => {
+  useEffect(() => {
     let camera; let scene; let renderer; let bloomComposer;
     let robotModel; let directionalLight; let controls; let starMesh;
     // let geometry, material, mesh;
@@ -42,7 +42,7 @@ function Playground() {
         canvas: document.querySelector('#bg'),
       });
       renderer.setSize(window.innerWidth, window.innerHeight); // canvas size
-      document.body.appendChild(renderer.domElement);
+      // document.body.appendChild(renderer.domElement);
 
       controls = new OrbitControls(camera, renderer.domElement);
       controls.addEventListener('change', render);
